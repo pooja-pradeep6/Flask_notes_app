@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+    <h2>{{ title }}</h2>
+    <form method="POST" class="form-card">
+        {{ form.hidden_tag() }}
+
+        <label>{{ form.title.label }}</label>
+        {{ form.title(class_="input") }}
+        {% for error in form.title.errors %}<p class="error">{{ error }}</p>{% endfor %}
+
+        <label>{{ form.content.label }}</label>
+        {{ form.content(class_="input", rows="6") }}
+        {% for error in form.content.errors %}<p class="error">{{ error }}</p>{% endfor %}
+
+        <label>{{ form.category.label }}</label>
+        {{ form.category(class_="input", placeholder="e.g. Personal, Work, Ideas") }}
+
+        <label class="checkbox-label">{{ form.pinned() }} {{ form.pinned.label }}</label>
+
+        {{ form.submit(class_="btn") }}
+    </form>
+    <p><a href="{{ url_for('dashboard') }}">Back to dashboard</a></p>
+{% endblock %}
